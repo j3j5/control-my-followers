@@ -1,0 +1,20 @@
+{
+    "name": "j3j5/control_my_followers",
+    "description": "Tool for Twitter that makes everybody who you don't follow, unfollow you (in case they were already your followers)",
+    "require": {
+        "j3j5/twitterapio": "dev-master"
+    },
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Julio Foulquié",
+            "email": "jfoulquie@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "j3j5": "src/"
+        }
+    }
+}

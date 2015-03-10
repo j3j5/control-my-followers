@@ -6,6 +6,8 @@ Tool for Twitter that makes everybody who you don't follow, unfollow you (in cas
 
 ## Installation
 
+Install via [Composer](http://getcomposer.org) (make sure you have composer in your path or in your project).
+
 Add `j3j5/control_my_followers` to `composer.json`.
 ```
 "j3j5/twitterapio": "dev-master"

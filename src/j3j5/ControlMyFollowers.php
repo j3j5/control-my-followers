@@ -30,9 +30,18 @@ class ControlMyFollowers {
 
 		$this->username = $settings['username'];
 		unset($settings['username']);
-		$this->api = new TwitterApio($settings);
+		$this->api = new TwitterApio($settings, array('debug' => FALSE));
 		$this->followers = array();
 		$this->following = array();
+	}
+
+	public function get_user_info($twitter_id) {
+		$slug = 'users/show';
+		$parameters = array(
+			'user_id' => $twitter_id,
+		);
+		return $this->api->get($slug, $parameters);
+
 	}
 
 	public function get_all_my_followers() {

@@ -40,7 +40,10 @@ if(!isset($twitter_settings['secret']) OR empty($twitter_settings['secret']) OR 
 	exit;
 }
 
-
+$safe_mode = FALSE;
+if(isset($argv[1]) && $argv[1] == 'safe') {
+	$safe_mode = TRUE;
+}
 
 $parser = new ControlMyFollowers($twitter_settings);
 
@@ -48,30 +51,38 @@ $followers = $parser->get_all_my_followers();
 echo "@{$twitter_settings['username']}'s followers are: " . print_r($followers, TRUE) . PHP_EOL;
 
 $friends = $parser->get_all_my_friends();
-
 echo "@{$twitter_settings['username']}'s friends are: " . print_r($friends, TRUE) . PHP_EOL;
-
 
 $unwanted = $parser->get_unwanted_followers();
 
-echo PHP_EOL;
-
-echo "@{$twitter_settings['username']}'s followers who will stop following you are: " . print_r($unwanted, TRUE) . PHP_EOL;
-
-// exit;
-echo "The process may take a while depending on your amount of followers.".PHP_EOL."Are you sure you want to continue?[y/n] ";
-
-$handle = fopen ("php://stdin","r");
-$line = fgets($handle);
-if(trim($line) != 'y'){
-	echo "ABORTING!" . PHP_EOL;
+if(empty($unwanted)) {
+	echo "You already have a clean follower list. Nothing to do here." . PHP_EOL;
 	exit;
 }
+
+echo PHP_EOL;
+echo "@{$twitter_settings['username']}'s followers who will stop following you are: " . print_r($unwanted, TRUE) . PHP_EOL;
+
+echo "The process may take a while depending on your amount of followers.".PHP_EOL."Are you sure you want to continue?[Y/n] ";
+
+prompt_answer();
+
 echo "Alright... Let's kick some asses out of your follower list." . PHP_EOL;
-foreach($unwanted AS $user) {
+foreach($unwanted AS $user_id) {
 	$now = 0;
 	$has_slept = FALSE;
-	$response = $parser->make_user_unfollow_you($user);
+	if($safe_mode) {
+		$user = $parser->get_user_info($user_id);
+		if(!isset($user['errors'])) {
+			echo "Do you want \"{$user['name']}\" (@{$user['screen_name']}) to stop following you?[Y/n]";
+			$delete = prompt_answer(FALSE);
+			if(!$delete) {
+				continue;
+			}
+		}
+	}
+
+	$response = $parser->make_user_unfollow_you($user_id);
 	// Check for rate limits
 	if((isset($response['block']['tts']) && $response['block']['tts'] > 0)) {
 		echo "Sleeping..." . PHP_EOL;
@@ -103,3 +114,20 @@ foreach($unwanted AS $user) {
 }
 
 echo "Done, you should have now a pretty clean and neat list of followers." . PHP_EOL;
+
+function prompt_answer($exit = TRUE) {
+	$handle = fopen ("php://stdin","r");
+	$line = fgets($handle);
+	if(trim($line) !== 'y' && !empty(trim($line))) {
+		fclose($handle);
+		if($exit) {
+			echo "ABORTING!" . PHP_EOL;
+			exit;
+		} else {
+			return FALSE;
+		}
+	}
+	if(!$exit) {
+		return TRUE;
+	}
+}

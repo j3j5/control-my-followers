@@ -45,6 +45,12 @@ if(isset($argv[1]) && $argv[1] == 'safe') {
 	$safe_mode = TRUE;
 }
 
+if($safe_mode) {
+	echo 'YOU ARE RUNNING ON SAFE MODE.' . PHP_EOL;
+} else {
+	echo "You like the risk and are running on normal mode, hey, that's a thing!, try adding 'safe' as a parameter to the script to try it out." . PHP_EOL;
+}
+
 $parser = new ControlMyFollowers($twitter_settings);
 
 $followers = $parser->get_all_my_followers();

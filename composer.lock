@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "576ca4d477e4c3f2a304a510313f518f",
+    "hash": "731a2fbf07ced6d2b863115a4f2e3178",
     "packages": [
         {
             "name": "j3j5/twitterapio",
@@ -42,6 +42,49 @@
             ],
             "description": "A wrapper for the great tmhoauth to use with Twitter's API.",
             "time": "2015-03-08 15:09:53"
+        },
+        {
+            "name": "pleonasm/bloom-filter",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pleonasm/bloom-filter.git",
+                "reference": "eb899c9078cf68fbca5c5b4830f0ca8168621e7d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pleonasm/bloom-filter/zipball/eb899c9078cf68fbca5c5b4830f0ca8168621e7d",
+                "reference": "eb899c9078cf68fbca5c5b4830f0ca8168621e7d",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/php-invoker": "*",
+                "phpunit/phpunit": "*",
+                "satooshi/php-coveralls": "dev-master@dev",
+                "squizlabs/php_codesniffer": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Pleo": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew Nagi",
+                    "email": "matthew.nagi@base-2.net"
+                }
+            ],
+            "description": "A pure PHP implementation of a Bloom Filter",
+            "keywords": [
+                "Bloom Filter",
+                "sets"
+            ],
+            "time": "2014-08-16 15:23:23"
         },
         {
             "name": "themattharris/tmhoauth",
@@ -90,10 +133,13 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "j3j5/twitterapio": 20
+        "j3j5/twitterapio": 20,
+        "pleonasm/bloom-filter": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.4.0"
+    },
     "platform-dev": []
 }

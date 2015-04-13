@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/j3j5/twitterapio.git",
-                "reference": "1f73196d15e2171c5ab91ea35858a895fa2ccbce"
+                "reference": "e1a18af2d9f3063be28ec3289c4879ec0e224135"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/j3j5/twitterapio/zipball/1f73196d15e2171c5ab91ea35858a895fa2ccbce",
-                "reference": "1f73196d15e2171c5ab91ea35858a895fa2ccbce",
+                "url": "https://api.github.com/repos/j3j5/twitterapio/zipball/e1a18af2d9f3063be28ec3289c4879ec0e224135",
+                "reference": "e1a18af2d9f3063be28ec3289c4879ec0e224135",
                 "shasum": ""
             },
             "require": {
@@ -41,7 +41,7 @@
                 }
             ],
             "description": "A wrapper for the great tmhoauth to use with Twitter's API.",
-            "time": "2015-03-08 15:09:53"
+            "time": "2015-04-12 09:26:16"
         },
         {
             "name": "pleonasm/bloom-filter",
